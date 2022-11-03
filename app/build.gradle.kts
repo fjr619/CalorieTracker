@@ -38,6 +38,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
     implementation(projects.core)
+    implementation(projects.coreUi)
     implementation(projects.onboarding.onboardingDomain)
     implementation(projects.onboarding.onboardingPresentation)
     implementation(projects.tracker.trackerData)

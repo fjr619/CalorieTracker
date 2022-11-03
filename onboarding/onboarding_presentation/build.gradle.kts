@@ -5,6 +5,6 @@ apply {
 
 dependencies {
     "implementation"(projects.core)
-    "implementation"(projects.tracker.trackerDomain)
-    "implementation"(libs.coil.compose)
+    "implementation"(projects.coreUi)
+    "implementation"(projects.onboarding.onboardingDomain)
 }
