@@ -23,8 +23,9 @@ dependencyResolutionManagement {
 //        }
 //    }
 }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "CaloryTracker"
+rootProject.name = "CalorieTracker"
 include (":app")
 include (":core")
 include (":onboarding:onboarding_presentation")

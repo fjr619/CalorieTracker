@@ -1,23 +1,18 @@
 plugins {
     id ("com.android.application")
-    id ("kotlin-android")
-    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+}
+
+apply {
+    from("${rootProject.rootDir}/compose-module.gradle")
 }
 
 android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = libs.versions.appId.get()
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -26,19 +21,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
-    }
+
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -52,16 +35,12 @@ dependencies {
     implementation(libs.androidX.appCompat)
     implementation(libs.google.material)
 
-    implementation (libs.compose.ui)
-    implementation (libs.compose.material)
-    implementation (libs.compose.uiToolingPreview)
-
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    implementation (libs.compose.activityCompose)
 
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:${libs.versions.composeVersion.get()}")
-    debugImplementation ("androidx.compose.ui:ui-tooling:${libs.versions.composeVersion.get()}")
+    implementation(projects.core)
+    implementation(projects.onboarding.onboardingDomain)
+    implementation(projects.onboarding.onboardingPresentation)
+    implementation(projects.tracker.trackerData)
+    implementation(projects.tracker.trackerDomain)
+    implementation(projects.tracker.trackerPresentation)
 }

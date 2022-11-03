@@ -1,4 +1,4 @@
-package com.fjr619.tracker_domain
+package com.fjr619.onboarding_domain
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

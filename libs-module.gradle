@@ -1,0 +1,10 @@
+apply plugin: "com.android.library"
+apply from: "${rootProject.rootDir}/default-module.gradle"
+
+android {
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
+}
+
+dependencies {}

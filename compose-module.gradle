@@ -1,0 +1,22 @@
+apply from: "${rootProject.rootDir}/default-module.gradle"
+
+android {
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.composeCompilerVersion.get()
+    }
+}
+
+dependencies {
+    implementation libs.compose.compiler
+    implementation libs.compose.ui
+    implementation libs.compose.uiToolingPreview
+    implementation libs.compose.hiltNavigationCompose
+    implementation libs.compose.material
+    implementation libs.compose.runtime
+    implementation libs.compose.navigation
+    implementation libs.compose.viewModelCompose
+    implementation libs.compose.activityCompose
+}

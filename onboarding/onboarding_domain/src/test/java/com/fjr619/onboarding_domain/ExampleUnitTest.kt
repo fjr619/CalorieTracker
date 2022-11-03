@@ -1,4 +1,4 @@
-package com.fjr619.tracker_domain
+package com.fjr619.onboarding_domain
 
 import org.junit.Test
 
