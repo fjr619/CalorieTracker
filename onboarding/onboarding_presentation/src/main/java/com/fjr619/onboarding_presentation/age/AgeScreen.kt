@@ -26,7 +26,6 @@ fun AgeScreen(
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
     val age by viewModel.age.collectAsState()
 
     LaunchedEffect(true) {
