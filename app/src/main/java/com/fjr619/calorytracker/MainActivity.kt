@@ -14,6 +14,8 @@ import com.fjr619.calorytracker.ui.theme.CaloryTrackerTheme
 import com.fjr619.core.navigation.Route
 import com.fjr619.onboarding_presentation.age.AgeScreen
 import com.fjr619.onboarding_presentation.gender.GenderScreen
+import com.fjr619.onboarding_presentation.height.HeightScreen
+import com.fjr619.onboarding_presentation.weight.WeightScreen
 import com.fjr619.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,11 +50,15 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.HEIGHT) {
-
+                            HeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate)
                         }
 
                         composable(Route.WEIGHT) {
-
+                            WeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate)
                         }
 
                         composable(Route.NUTRIENT_GOAL) {

@@ -18,6 +18,7 @@ import com.fjr619.core.R
 import com.fjr619.core.navigation.Route
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class AgeViewModel @Inject constructor(
@@ -29,14 +30,17 @@ class AgeViewModel @Inject constructor(
     //berbeda dengan di gender viewmodel, dia menggunakan MutableState
     //source : https://www.youtube.com/watch?v=T8vApYJlW8o
     private val _age = MutableStateFlow("20")
-    var age = _age.asStateFlow()
+    val age = _age.asStateFlow()
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
     fun onAgeEnter(age: String) {
         if (age.length <= 3) {
-            _age.value = filterOutDigits(age)
+            _age.update {
+                filterOutDigits(age)
+            }
+//            _age.value = filterOutDigits(age)
         }
     }
 
