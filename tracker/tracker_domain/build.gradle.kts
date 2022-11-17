@@ -4,4 +4,5 @@ apply {
 
 dependencies {
     "implementation"(projects.core)
+    "implementation"(libs.coroutine)
 }

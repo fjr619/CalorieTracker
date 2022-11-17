@@ -40,7 +40,6 @@ class AgeViewModel @Inject constructor(
             _age.update {
                 filterOutDigits(age)
             }
-//            _age.value = filterOutDigits(age)
         }
     }
 
