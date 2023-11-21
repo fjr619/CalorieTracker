@@ -1,3 +1,5 @@
+package plugins
+
 import extensions.applicationGradle
 import extensions.configureBuildTypes
 import extensions.configureKotlinAndroid

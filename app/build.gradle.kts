@@ -2,6 +2,8 @@
 plugins {
     id("plugin.app")
     id("plugin.app.compose")
+    id("plugin.hilt")
+    id("plugin.room")
 //    alias(libs.plugins.com.android.application)
 //    alias(libs.plugins.org.jetbrains.kotlin.android)
 //    alias(libs.plugins.com.google.dagger.hilt.android)
@@ -78,7 +80,7 @@ dependencies {
 //    //hilt
 //    implementation(libs.hilt)
 //    ksp (libs.hilt.compiler)
-//    implementation(libs.hilt.compose)
+    implementation(libs.hilt.compose)
 //
 //    //room
 //    implementation(libs.room)
@@ -88,8 +90,8 @@ dependencies {
 //    //retrofit
 
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.espresso.core)
 
 }

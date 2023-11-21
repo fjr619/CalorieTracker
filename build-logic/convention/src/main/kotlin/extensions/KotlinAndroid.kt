@@ -33,12 +33,12 @@ internal fun Project.configureKotlinAndroid(
 
         packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
 
-//        dependencies {
+        dependencies {
 //            "implementation"(libs.findLibrary("core-ktx").get())
 //            "implementation"(libs.findLibrary("lifecycle-runtime-ktx").get())
-//            "testImplementation"(libs.findLibrary("junit").get())
-//            "androidTestImplementation"(libs.findLibrary("androidx-test-ext-junit").get())
-//            "androidTestImplementation"(libs.findLibrary("espresso-core").get())
-//        }
+            "testImplementation"(libs.findLibrary("junit").get())
+            "androidTestImplementation"(libs.findLibrary("androidx-test-ext-junit").get())
+            "androidTestImplementation"(libs.findLibrary("espresso-core").get())
+        }
     }
 }

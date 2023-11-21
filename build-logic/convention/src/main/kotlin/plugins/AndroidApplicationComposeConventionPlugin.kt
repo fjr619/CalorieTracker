@@ -1,3 +1,5 @@
+package plugins
+
 import extensions.applicationGradle
 import extensions.configureAndroidCompose
 import org.gradle.api.Plugin

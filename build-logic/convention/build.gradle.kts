@@ -21,12 +21,32 @@ gradlePlugin {
     plugins {
         register("androidApp") {
             id = "plugin.app"
-            implementationClass = "AndroidApplicationConventionPlugin"
+            implementationClass = "plugins.AndroidApplicationConventionPlugin"
         }
 
         register("androidAppCompose") {
             id = "plugin.app.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+            implementationClass = "plugins.AndroidApplicationComposeConventionPlugin"
+        }
+
+        register("androidLibrary") {
+            id = "plugin.lib"
+            implementationClass = "plugins.AndroidLibraryConventionPlugin"
+        }
+
+        register("androidLibraryCompose") {
+            id = "plugin.lib.compose"
+            implementationClass = "plugins.AndroidLibraryComposeConventionPlugin"
+        }
+
+        register("androidHilt") {
+            id = "plugin.hilt"
+            implementationClass = "plugins.HiltConventionPlugin"
+        }
+
+        register("androidRoom") {
+            id = "plugin.room"
+            implementationClass = "plugins.RoomConventionPlugin"
         }
     }
 }
