@@ -31,6 +31,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/onboarding" />
             <option value="$PROJECT_DIR$/onboarding/domain" />
+            <option value="$PROJECT_DIR$/onboarding/presentation" />
           </set>
         </option>
       </GradleProjectSettings>

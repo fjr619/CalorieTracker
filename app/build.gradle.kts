@@ -58,9 +58,10 @@ android {
 }
 
 dependencies {
+    implementation(projects.onboarding.presentation)
 
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
+//    implementation(libs.core.ktx)
+//    implementation(libs.lifecycle.runtime.ktx)
 
 //    implementation(libs.activity.compose)
 //    implementation(platform(libs.compose.bom))
@@ -80,7 +81,7 @@ dependencies {
 //    //hilt
 //    implementation(libs.hilt)
 //    ksp (libs.hilt.compiler)
-    implementation(libs.hilt.compose)
+//    implementation(libs.hilt.compose)
 //
 //    //room
 //    implementation(libs.room)
