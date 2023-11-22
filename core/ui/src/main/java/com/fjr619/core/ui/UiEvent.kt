@@ -1,4 +1,4 @@
-package com.fjr619.core.base.util
+package com.fjr619.core.ui
 
 sealed class UiEvent {
     data class Navigate(val route: String): UiEvent()

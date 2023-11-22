@@ -19,7 +19,7 @@ import com.fjr619.core.ui.LocalSpacing
 
 @Composable
 fun UnitTextField(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     unit: String,

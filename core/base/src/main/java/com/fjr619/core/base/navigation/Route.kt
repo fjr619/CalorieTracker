@@ -1,6 +1,7 @@
 package com.fjr619.core.base.navigation
 
 object Route {
+    const val ONBOARDING_ROUTE = "onboardingRoute"
     const val WELCOME_SCREEN = "welcomeScreen"
     const val AGE_SCREEN = "ageScreen"
     const val GENDER_SCREEN = "genderScreen"

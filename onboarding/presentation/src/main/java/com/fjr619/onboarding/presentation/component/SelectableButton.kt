@@ -17,11 +17,12 @@ fun SelectableButton(
     modifier: Modifier = Modifier,
     text: String,
     isSelected: Boolean,
-    color: Color,
-    selectedTextColor: Color,
+    color: Color = MaterialTheme.colorScheme.secondary,
+    selectedTextColor: Color = Color.White,
     style: TextStyle = MaterialTheme.typography.labelLarge,
     onClick: ()-> Unit
 ) {
+
     OutlinedButton(
         modifier = modifier,
         onClick = onClick,
@@ -41,8 +42,6 @@ fun PreviewSelectableButton() {
     SelectableButton(
         text = "AAAa",
         isSelected = true,
-        color = Color.Green,
-        selectedTextColor = Color.White,
         onClick = {}
     )
 }
