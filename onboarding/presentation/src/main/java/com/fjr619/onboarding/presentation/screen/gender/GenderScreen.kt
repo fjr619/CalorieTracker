@@ -12,16 +12,55 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import com.fjr619.core.base.R
 import com.fjr619.core.base.domain.model.Gender
 import com.fjr619.core.base.navigation.Route
 import com.fjr619.core.ui.LocalSpacing
 import com.fjr619.core.ui.UiEvent
+import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigate
+import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.component.ActionButton
 import com.fjr619.onboarding.presentation.component.SelectableButton
+
+fun NavGraphBuilder.Gender(navController: NavController) {
+    composable(Route.GENDER_SCREEN) {
+        val viewModel: GenderViewModel = hiltViewModel()
+        val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+        EventEffect(
+            event = state.navigate,
+            onConsumed = viewModel::onConsumedNavigate,
+            action = navController::navigate
+        )
+
+        GenderScreen(
+            selectedGender = state.gender,
+            onNextClick = {
+                viewModel.onEvent(
+                    OnboardingUiEvent.NextPage(
+                        UiEvent.Navigate(
+                            Route.AGE_SCREEN
+                        )
+                    )
+                )
+            },
+            onSelectedGender = { gender ->
+                viewModel.onEvent(OnboardingUiEvent.SelectGender(gender))
+            }
+        )
+    }
+}
 
 @Composable
 fun GenderScreen(

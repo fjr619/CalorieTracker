@@ -19,21 +19,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.fjr619.calorietracker.navigation.navigate
+import com.fjr619.core.ui.navigate
 import com.fjr619.calorietracker.ui.theme.CalorieTrackerTheme
 import com.fjr619.core.base.navigation.Route
 import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.UiText
 import com.fjr619.core.ui.compose_state_events.EventEffect
 import com.fjr619.core.ui.compose_state_events.StateEventWithContent
+import com.fjr619.core.ui.showSnackbar
 import com.fjr619.core.ui.snackbar.CustomSnackbar
 import com.fjr619.core.ui.snackbar.CustomSnackbarVisual
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.WelcomeScreen
+import com.fjr619.onboarding.presentation.screen.age.Age
 import com.fjr619.onboarding.presentation.screen.age.AgeScreen
 import com.fjr619.onboarding.presentation.screen.age.AgeViewModel
-import com.fjr619.onboarding.presentation.screen.gender.GenderScreen
-import com.fjr619.onboarding.presentation.screen.gender.GenderViewModel
+import com.fjr619.onboarding.presentation.screen.gender.Gender
+import com.fjr619.onboarding.presentation.screen.height.Height
 import com.fjr619.onboarding.presentation.screen.height.HeightScreen
 import com.fjr619.onboarding.presentation.screen.height.HeightViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,100 +71,10 @@ class MainActivity : ComponentActivity() {
                                 WelcomeScreen(onNavigate = navController::navigate)
                             }
 
-                            composable(Route.GENDER_SCREEN) {
-                                val viewModel: GenderViewModel = hiltViewModel()
-                                val state by viewModel.uiState.collectAsStateWithLifecycle()
+                            Gender(navController)
+                            Age(snackbarHost, navController)
+                            Height(snackbarHost, navController)
 
-                                EventEffect(
-                                    event = state.navigate,
-                                    onConsumed = viewModel::onConsumedNavigate,
-                                    action = navController::navigate
-                                )
-
-                                GenderScreen(
-                                    selectedGender = state.gender,
-                                    onNextClick = {
-                                        viewModel.onEvent(
-                                            OnboardingUiEvent.NextPage(
-                                                UiEvent.Navigate(
-                                                    Route.AGE_SCREEN
-                                                )
-                                            )
-                                        )
-                                    },
-                                    onSelectedGender = { gender ->
-                                        viewModel.onEvent(OnboardingUiEvent.SelectGender(gender))
-                                    }
-                                )
-                            }
-
-                            composable(Route.AGE_SCREEN) {
-                                val viewModel: AgeViewModel = hiltViewModel()
-                                val state by viewModel.uiState.collectAsStateWithLifecycle()
-
-                                showSnackbar(
-                                    event = state.showSnackbar,
-                                    onConsumed = viewModel::onConsumedSnackbar,
-                                    snackbarHost = snackbarHost,
-                                )
-
-                                EventEffect(
-                                    event = state.navigate,
-                                    onConsumed = viewModel::onConsumedNavigate,
-                                    action = navController::navigate
-                                )
-
-
-                                AgeScreen(
-                                    age = state.age,
-                                    onNextClick = {
-                                        viewModel.onEvent(
-                                            OnboardingUiEvent.NextPage(
-                                                UiEvent.Navigate(
-                                                    Route.HEIGHT_SCREEN
-                                                )
-                                            )
-                                        )
-                                    },
-                                    onSelectedAge = {
-                                        viewModel.onEvent(OnboardingUiEvent.SelectAge(it))
-                                    }
-                                )
-                            }
-
-                            composable(Route.HEIGHT_SCREEN) {
-                                val viewModel: HeightViewModel = hiltViewModel()
-                                val state by viewModel.uiState.collectAsStateWithLifecycle()
-
-                                showSnackbar(
-                                    event = state.showSnackbar,
-                                    onConsumed = viewModel::onConsumedSnackbar,
-                                    snackbarHost = snackbarHost
-                                )
-
-                                EventEffect(
-                                    event = state.navigate,
-                                    onConsumed = viewModel::onConsumedNavigate,
-                                    action = navController::navigate
-                                )
-
-                                HeightScreen(
-                                    height = state.height,
-                                    onNextClick = {
-                                        viewModel.onEvent(
-                                            OnboardingUiEvent.NextPage(
-                                                UiEvent.Navigate(
-                                                    Route.WEIGHT_SCREEN
-                                                )
-                                            )
-                                        )
-                                    },
-                                    onSelectedHeight = {
-                                        viewModel.onEvent(OnboardingUiEvent.SelectHeight(it))
-                                    }
-                                )
-
-                            }
                             composable(Route.WEIGHT_SCREEN) {
 
                             }
@@ -189,24 +101,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-fun showSnackbar(
-    isError: Boolean = true,
-    event: StateEventWithContent<UiText>,
-    onConsumed: () -> Unit,
-    snackbarHost: SnackbarHostState
-) {
-    val context = LocalContext.current
-    EventEffect(event = event,
-        onConsumed = onConsumed,
-        action = {
-            snackbarHost.showSnackbar(
-                visuals = CustomSnackbarVisual(
-                    message = it.asString(context),
-                    isError = isError,
-                ),
-            )
-        })
 }

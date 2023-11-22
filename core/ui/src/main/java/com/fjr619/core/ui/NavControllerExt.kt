@@ -1,4 +1,4 @@
-package com.fjr619.calorietracker.navigation
+package com.fjr619.core.ui
 
 import androidx.navigation.NavController
 import com.fjr619.core.ui.UiEvent
