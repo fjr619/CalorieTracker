@@ -3,7 +3,7 @@ package com.fjr619.core.base.navigation
 object Route {
     const val WELCOME_SCREEN = "welcomeScreen"
     const val AGE_SCREEN = "ageScreen"
-    const val GENDER = "gender"
+    const val GENDER_SCREEN = "genderScreen"
     const val HEIGHT = "height"
     const val WEIGHT = "weight"
     const val NUTRIENT_GOAL = "nutrient_goal"

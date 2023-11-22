@@ -16,7 +16,8 @@ internal fun Project.configureAndroidCompose(
             "implementation"(libs.findLibrary("activity-compose").get())
             "implementation"(platform(libs.findLibrary("compose-bom").get()))
             "implementation"(libs.findBundle("compose").get())
-
+            "implementation"(libs.findLibrary("compose-navigation").get())
+            "implementation"(libs.findLibrary("lifecycle-runtime-compose").get())
 
             "androidTestImplementation"(platform(libs.findLibrary("compose-bom").get()))
             "testImplementation"(libs.findLibrary("ui-test-junit4").get())

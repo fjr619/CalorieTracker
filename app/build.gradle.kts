@@ -3,7 +3,7 @@ plugins {
     id("plugin.app")
     id("plugin.app.compose")
     id("plugin.hilt")
-    id("plugin.room")
+//    id("plugin.room")
 //    alias(libs.plugins.com.android.application)
 //    alias(libs.plugins.org.jetbrains.kotlin.android)
 //    alias(libs.plugins.com.google.dagger.hilt.android)
