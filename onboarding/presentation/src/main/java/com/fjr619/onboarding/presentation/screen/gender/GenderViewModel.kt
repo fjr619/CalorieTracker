@@ -22,6 +22,8 @@ class GenderViewModel @Inject constructor(
         }
     }
 
+    override fun onConsumedSnackbar() {}
+
     fun onEvent(event: OnboardingUiEvent) {
         when(event) {
             is OnboardingUiEvent.NextPage -> {

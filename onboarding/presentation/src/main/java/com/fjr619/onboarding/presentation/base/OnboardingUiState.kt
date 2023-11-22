@@ -2,6 +2,7 @@ package com.fjr619.onboarding.presentation.base
 
 import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.UiState
+import com.fjr619.core.ui.UiText
 import com.fjr619.core.ui.compose_state_events.StateEventWithContent
 import com.fjr619.core.ui.compose_state_events.consumed
 
@@ -13,6 +14,8 @@ import com.fjr619.core.ui.compose_state_events.consumed
 //    ): UiState
 
 interface OnboardingUiState : UiState {
-    val navigate: StateEventWithContent<UiEvent.Navigate>
+    val showSnackbar: StateEventWithContent<UiText>
         get() = consumed()
+
+    val navigate: StateEventWithContent<UiEvent.Navigate>
 }

@@ -12,4 +12,5 @@ import javax.inject.Inject
 
 abstract class  OnboardingViewModel<OnboardingUiState : UiState> : CoreViewModel<OnboardingUiState>() {
     abstract fun onConsumedNavigate()
+    abstract fun onConsumedSnackbar()
 }

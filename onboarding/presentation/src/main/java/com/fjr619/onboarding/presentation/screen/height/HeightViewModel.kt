@@ -1,4 +1,4 @@
-package com.fjr619.onboarding.presentation.screen.age
+package com.fjr619.onboarding.presentation.screen.height
 
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.R
@@ -14,11 +14,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AgeViewModel @Inject constructor(
+class HeightViewModel @Inject constructor(
     private val preferences: IPreferences,
     private val filterOutDigits: FilterOutDigits
-) : OnboardingViewModel<AgeUiState>() {
-    override fun createInitialState(): AgeUiState = AgeUiState()
+): OnboardingViewModel<HeightUiState>(){
+
+    override fun createInitialState(): HeightUiState = HeightUiState()
+
     override fun onConsumedNavigate() {
         setState { copy(navigate = consumed()) }
     }
@@ -31,25 +33,24 @@ class AgeViewModel @Inject constructor(
         when (event) {
             is OnboardingUiEvent.NextPage -> {
                 viewModelScope.launch {
-                    val ageNumber = uiState.value.age.toIntOrNull() ?: kotlin.run {
-                        setState { copy(showSnackbar = triggered(UiText.StringResource(R.string.error_age_cant_be_empty))) }
+                    val heightNumber  = uiState.value.height.toIntOrNull() ?: kotlin.run {
+                        setState { copy(showSnackbar = triggered(UiText.StringResource(R.string.error_height_cant_be_empty))) }
                         return@launch
                     }
 
-                    preferences.saveAge(ageNumber)
+                    preferences.saveAge(heightNumber)
                     setState {
                         copy(navigate = triggered(event.uiEvent))
                     }
                 }
             }
 
-            is OnboardingUiEvent.SelectAge -> {
-                if (event.age.length <= 3)
-                    setState { copy(age = filterOutDigits(event.age)) }
+            is OnboardingUiEvent.SelectHeight -> {
+                if (event.height.length <= 3)
+                    setState { copy(height = filterOutDigits(event.height)) }
             }
 
             else -> {}
         }
     }
-
 }
