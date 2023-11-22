@@ -15,13 +15,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.fjr619.core.base.R
 import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.base.util.UiEvent
 import com.fjr619.core.ui.LocalSpacing
-import com.fjr619.core.ui.UIEvent
 import com.fjr619.onboarding.presentation.component.ActionButton
 
 @Composable
 fun WelcomeScreen(
-    onNavigate: (UIEvent.Navigate) -> Unit
+    onNavigate: (UiEvent.Navigate) -> Unit
 ) {
     val spacing = LocalSpacing.current
     Column(
@@ -35,6 +35,6 @@ fun WelcomeScreen(
             style = MaterialTheme.typography.headlineLarge
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
-        ActionButton(text = stringResource(id = R.string.next), onClick = { onNavigate(UIEvent.Navigate(Route.GENDER_SCREEN)) })
+        ActionButton(text = stringResource(id = R.string.next), onClick = { onNavigate(UiEvent.Navigate(Route.AGE_SCREEN)) })
     }
 }
