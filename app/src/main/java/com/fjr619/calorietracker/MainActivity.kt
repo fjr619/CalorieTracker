@@ -29,13 +29,13 @@ class MainActivity : ComponentActivity() {
                     composable(Route.AGE_SCREEN) {
 
                     }
-                    composable(Route.GENDER) {
+                    composable(Route.GENDER_SCREEN) {
 
                     }
-                    composable(Route.HEIGHT) {
+                    composable(Route.HEIGHT_SCREEN) {
 
                     }
-                    composable(Route.WEIGHT) {
+                    composable(Route.WEIGHT_SCREEN) {
 
                     }
                     composable(Route.NUTRIENT_GOAL) {

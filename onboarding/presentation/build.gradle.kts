@@ -9,6 +9,6 @@ android {
 
 dependencies {
     projects.onboarding.apply {
-        implementation(domain)
+        api(domain)
     }
 }

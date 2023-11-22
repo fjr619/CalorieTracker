@@ -23,10 +23,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
     private fun Project.applyDependencies() {
         dependencies {
-            "implementation"(libs.findLibrary("hilt-compose").get())
-            "implementation"(libs.findLibrary("compose-navigation").get())
-            "implementation"(libs.findLibrary("core-ktx").get())
-            "implementation"(libs.findLibrary("lifecycle-runtime-ktx").get())
+            "api"(libs.findLibrary("hilt-compose").get())
+            "api"(libs.findLibrary("core-ktx").get())
+            "api"(libs.findLibrary("lifecycle-runtime-ktx").get())
             "api"(project(":core:base"))
             "api"(project(":core:ui"))
         }
