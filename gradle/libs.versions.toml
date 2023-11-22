@@ -27,6 +27,7 @@ room = "2.6.0"
 retrofit = "2.9.0"
 okhttp = "4.11.0"
 navigation = "2.7.5"
+datastore = "1.0.0"
 #moshi = "1.14"
 
 
@@ -61,6 +62,8 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit"}
 okhttp-log = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}
+
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }

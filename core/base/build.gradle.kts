@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.fjr619.core.base"
 }
+
+dependencies {
+    api(libs.datastore)
+}
