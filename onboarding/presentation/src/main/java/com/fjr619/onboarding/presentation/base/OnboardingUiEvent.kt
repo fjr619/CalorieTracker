@@ -9,5 +9,5 @@ sealed class OnboardingUiEvent {
     data class SelectGender(val gender: Gender): OnboardingUiEvent()
     data class SelectAge(val age: String): OnboardingUiEvent()
     data class SelectHeight(val height: String): OnboardingUiEvent()
-    data class SelectWeight(val weight: Float): OnboardingUiEvent()
+    data class SelectWeight(val weight: String): OnboardingUiEvent()
 }

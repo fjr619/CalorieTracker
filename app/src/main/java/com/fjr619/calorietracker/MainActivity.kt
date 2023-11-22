@@ -38,6 +38,7 @@ import com.fjr619.onboarding.presentation.screen.gender.Gender
 import com.fjr619.onboarding.presentation.screen.height.Height
 import com.fjr619.onboarding.presentation.screen.height.HeightScreen
 import com.fjr619.onboarding.presentation.screen.height.HeightViewModel
+import com.fjr619.onboarding.presentation.screen.weight.Weight
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,10 +75,7 @@ class MainActivity : ComponentActivity() {
                             Gender(navController)
                             Age(snackbarHost, navController)
                             Height(snackbarHost, navController)
-
-                            composable(Route.WEIGHT_SCREEN) {
-
-                            }
+                            Weight(snackbarHost, navController)
                         }
 
                         composable(Route.NUTRIENT_GOAL) {

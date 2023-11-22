@@ -1,4 +1,4 @@
-package com.fjr619.onboarding.presentation.screen.height
+package com.fjr619.onboarding.presentation.screen.weight
 
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.R
@@ -9,17 +9,18 @@ import com.fjr619.core.ui.compose_state_events.consumed
 import com.fjr619.core.ui.compose_state_events.triggered
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.base.OnboardingViewModel
+import com.fjr619.onboarding.presentation.screen.height.HeightUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HeightViewModel @Inject constructor(
+class WeightViewModel @Inject constructor(
     private val preferences: IPreferences,
     private val filterOutDigits: FilterOutDigits
-): OnboardingViewModel<HeightUiState>(){
+): OnboardingViewModel<WeightUiState>(){
 
-    override fun createInitialState(): HeightUiState = HeightUiState()
+    override fun createInitialState(): WeightUiState = WeightUiState()
 
     override fun onConsumedNavigate() {
         setState { copy(navigate = consumed()) }
@@ -33,21 +34,21 @@ class HeightViewModel @Inject constructor(
         when (event) {
             is OnboardingUiEvent.NextPage -> {
                 viewModelScope.launch {
-                    val heightNumber  = uiState.value.height.toIntOrNull() ?: kotlin.run {
+                    val weightNumber  = uiState.value.weight.toFloatOrNull() ?: kotlin.run {
                         setState { copy(showSnackbar = triggered(UiText.StringResource(R.string.error_height_cant_be_empty))) }
                         return@launch
                     }
 
-                    preferences.saveHeight(heightNumber)
+                    preferences.saveWeight(weightNumber)
                     setState {
                         copy(navigate = triggered(event.uiEvent))
                     }
                 }
             }
 
-            is OnboardingUiEvent.SelectHeight -> {
-                if (event.height.length <= 3)
-                    setState { copy(height = filterOutDigits(event.height)) }
+            is OnboardingUiEvent.SelectWeight -> {
+                if (event.weight.length <= 5)
+                    setState { copy(weight = filterOutDigits(event.weight)) }
             }
 
             else -> {}
