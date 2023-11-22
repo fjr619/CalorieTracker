@@ -1,6 +1,8 @@
 package com.fjr619.onboarding.presentation.base
 
+import com.fjr619.core.base.domain.model.ActivityLevel
 import com.fjr619.core.base.domain.model.Gender
+import com.fjr619.core.base.domain.model.GoalType
 import com.fjr619.core.ui.UiEvent
 
 sealed class OnboardingUiEvent {
@@ -10,4 +12,6 @@ sealed class OnboardingUiEvent {
     data class SelectAge(val age: String): OnboardingUiEvent()
     data class SelectHeight(val height: String): OnboardingUiEvent()
     data class SelectWeight(val weight: String): OnboardingUiEvent()
+    data class SelectActivityLevel(val level: ActivityLevel): OnboardingUiEvent()
+    data class SelectGoalType(val goalType: GoalType): OnboardingUiEvent()
 }
