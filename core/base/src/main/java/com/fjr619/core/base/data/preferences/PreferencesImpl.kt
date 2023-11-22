@@ -1,4 +1,4 @@
-package com.fjr619.core.base.domain
+package com.fjr619.core.base.data.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class PreferencesImpl(
-    val dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>
 ): IPreferences {
     override suspend fun saveGender(gender: Gender) {
         dataStore.edit {
