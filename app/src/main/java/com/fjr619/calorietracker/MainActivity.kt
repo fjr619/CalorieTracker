@@ -10,7 +10,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,6 +23,8 @@ import com.fjr619.calorietracker.ui.theme.CalorieTrackerTheme
 import com.fjr619.core.base.navigation.Route
 import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.snackbar.CustomSnackbar
+import com.fjr619.core.ui.snackbar.CustomSnackbarVisual
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.WelcomeScreen
 import com.fjr619.onboarding.presentation.screen.age.AgeScreen
@@ -40,14 +41,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
-                val scope = rememberCoroutineScope()
                 val context = LocalContext.current
                 val snackbarHost = remember {
                     SnackbarHostState()
                 }
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    snackbarHost = { SnackbarHost(snackbarHost) }
+                    snackbarHost = {
+                        SnackbarHost(snackbarHost) { data ->
+                            CustomSnackbar(data)
+                        }
+                    }
                 ) {
                     NavHost(
                         navController = navController, startDestination = Route.ONBOARDING_ROUTE
@@ -67,7 +71,12 @@ class MainActivity : ComponentActivity() {
                                 EventEffect(event = state.showSnackbar,
                                     onConsumed = viewModel::onConsumedSnackbar,
                                     action = {
-                                        snackbarHost.showSnackbar(message = it.asString(context))
+                                        snackbarHost.showSnackbar(
+                                            visuals = CustomSnackbarVisual(
+                                                message = it.asString(context),
+                                                isError = true,
+                                            ),
+                                        )
                                     })
 
                                 EventEffect(
