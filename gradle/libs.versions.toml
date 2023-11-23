@@ -30,6 +30,7 @@ navigation = "2.7.5"
 datastore = "1.0.0"
 desugaring = "2.0.4"
 coroutine = "1.7.1"
+splashscreen = "1.0.1"
 #moshi = "1.14"
 
 
@@ -69,6 +70,7 @@ okhttp-log = { group = "com.squareup.okhttp3", name = "logging-interceptor", ver
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
 desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugaring"}
 coroutine = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine"}
+splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen"}
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }

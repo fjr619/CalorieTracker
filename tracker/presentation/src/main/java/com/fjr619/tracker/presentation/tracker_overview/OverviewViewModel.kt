@@ -1,5 +1,6 @@
 package com.fjr619.tracker.presentation.tracker_overview
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.core.base.navigation.Route
@@ -10,6 +11,7 @@ import com.fjr619.core.ui.viewmodel.CoreViewModel
 import com.fjr619.tracker.domain.use_case.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -27,6 +29,7 @@ class OverviewViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             preferences.saveShowOnboarding(false)
+            Log.e("TAG", "onboarding ${preferences.showOnboarding().first()}")
         }
     }
 

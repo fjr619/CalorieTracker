@@ -64,6 +64,9 @@ dependencies {
     implementation(projects.tracker.data)
     implementation(projects.tracker.presentation)
 
+    implementation (libs.splashscreen)
+
+
 //    implementation(libs.core.ktx)
 //    implementation(libs.lifecycle.runtime.ktx)
 

@@ -1,6 +1,8 @@
 package com.fjr619.onboarding.presentation.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -11,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.fjr619.core.ui.LocalSpacing
 
 @Composable
 fun SelectableButton(
@@ -18,7 +21,7 @@ fun SelectableButton(
     text: String,
     isSelected: Boolean,
     color: Color = MaterialTheme.colorScheme.secondary,
-    selectedTextColor: Color = Color.White,
+    selectedTextColor: Color = MaterialTheme.colorScheme.surface,
     style: TextStyle = MaterialTheme.typography.labelLarge,
     onClick: ()-> Unit
 ) {
@@ -32,7 +35,7 @@ fun SelectableButton(
         ),
         border = BorderStroke(1.dp, color)
     ) {
-        Text(text = text, style = style)
+        Text(text = text, style = style, modifier = Modifier.padding(LocalSpacing.current.spaceExtraSmall))
     }
 }
 

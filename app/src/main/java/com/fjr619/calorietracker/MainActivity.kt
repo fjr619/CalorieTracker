@@ -3,22 +3,35 @@ package com.fjr619.calorietracker
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.fjr619.core.ui.navigate
 import com.fjr619.calorietracker.ui.theme.CalorieTrackerTheme
+import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigate
 import com.fjr619.core.ui.snackbar.CustomSnackbar
 import com.fjr619.onboarding.presentation.screen.WelcomeScreen
 import com.fjr619.onboarding.presentation.screen.activity_level.ActivityLevel
@@ -30,18 +43,47 @@ import com.fjr619.onboarding.presentation.screen.nutrient.Nutrient
 import com.fjr619.onboarding.presentation.screen.weight.Weight
 import com.fjr619.tracker.presentation.tracker_overview.OverviewViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+
+    private val splashViewModel by viewModels<SplashViewModel>()
+
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+            .apply {
+                setKeepOnScreenCondition(condition = {
+                    splashViewModel.uiState.value.isLoading
+                })
+            }
+
+        val barColor = Color.Transparent.toArgb()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                barColor, barColor,
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                barColor, barColor,
+            ),
+        )
+
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+
+
+
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
                 val snackbarHost = remember {
                     SnackbarHostState()
                 }
+
+                val state by splashViewModel.uiState.collectAsStateWithLifecycle()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -52,7 +94,8 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     NavHost(
-                        navController = navController, startDestination = Route.ONBOARDING_ROUTE
+                        navController = navController, startDestination = state.startDestination
+
                     ) {
                         navigation(
                             route = Route.ONBOARDING_ROUTE,
@@ -77,7 +120,12 @@ class MainActivity : ComponentActivity() {
 
 
                         composable(Route.TRACKER_OVERVIEW_SCREEN) {
+                            val viewModel: OverviewViewModel = hiltViewModel()
+                            viewModel
 
+                            Box(modifier = Modifier.fillMaxSize()) {
+
+                            }
                         }
                         composable(Route.SEARCH) {
 
@@ -87,4 +135,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
 }
