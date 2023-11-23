@@ -1,5 +1,8 @@
 package com.fjr619.onboarding.data.di
 
+import android.app.Application
+import androidx.room.Room
+import com.fjr619.onboarding.data.local.TrackerDatabase
 import com.fjr619.onboarding.data.remote.OpenFoodApi
 import dagger.Module
 import dagger.Provides
@@ -37,5 +40,15 @@ object TrackerDataModule {
             .client(client)
             .build()
             .create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrackerDatabase(app: Application): TrackerDatabase {
+        return Room.databaseBuilder(
+            app,
+            TrackerDatabase::class.java,
+            "tracker_db"
+        ).build()
     }
 }
