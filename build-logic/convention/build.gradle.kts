@@ -57,5 +57,10 @@ gradlePlugin {
             id = "plugin.room"
             implementationClass = "plugins.RoomConventionPlugin"
         }
+
+        register("androidNetwork") {
+            id = "plugin.network"
+            implementationClass = "plugins.NetworkConventionPlugin"
+        }
     }
 }

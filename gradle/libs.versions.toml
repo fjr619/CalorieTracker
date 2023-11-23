@@ -79,4 +79,4 @@ com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 
 [bundles]
 compose  = [ "ui", "ui-graphics", "ui-tooling-preview", "material3", "compose-navigation"]
-
+network = [ "retrofit", "retrofit-moshi", "okhttp-log"]
