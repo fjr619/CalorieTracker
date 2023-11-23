@@ -2,7 +2,7 @@ package com.fjr619.onboarding.presentation.base
 
 import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.UiState
-import com.fjr619.core.ui.UiText
+import com.fjr619.core.base.util.UiText
 import com.fjr619.core.ui.compose_state_events.StateEventWithContent
 import com.fjr619.core.ui.compose_state_events.consumed
 

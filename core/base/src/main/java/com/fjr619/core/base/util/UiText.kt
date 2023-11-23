@@ -1,4 +1,4 @@
-package com.fjr619.core.ui
+package com.fjr619.core.base.util
 
 import android.content.Context
 

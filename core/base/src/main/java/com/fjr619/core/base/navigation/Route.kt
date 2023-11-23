@@ -13,6 +13,6 @@ object Route {
 
     const val NUTRIENT_GOAL_SCREEN = "nutrientGoalScreen"
 
-    const val TRACKER_OVERVIEW = "tracker_overview"
+    const val TRACKER_OVERVIEW_SCREEN = "trackerOverviewScreen"
     const val SEARCH = "search"
 }

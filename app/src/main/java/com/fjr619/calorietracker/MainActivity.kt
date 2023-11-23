@@ -25,6 +25,7 @@ import com.fjr619.onboarding.presentation.screen.age.Age
 import com.fjr619.onboarding.presentation.screen.gender.Gender
 import com.fjr619.onboarding.presentation.screen.goal.Goal
 import com.fjr619.onboarding.presentation.screen.height.Height
+import com.fjr619.onboarding.presentation.screen.nutrient.Nutrient
 import com.fjr619.onboarding.presentation.screen.weight.Weight
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +66,7 @@ class MainActivity : ComponentActivity() {
                             Weight(snackbarHost, navController)
                             ActivityLevel(navController)
                             Goal(navController)
+                            Nutrient(snackbarHost, navController)
                         }
 
                         composable(Route.NUTRIENT_GOAL_SCREEN) {
@@ -72,7 +74,7 @@ class MainActivity : ComponentActivity() {
                         }
 
 
-                        composable(Route.TRACKER_OVERVIEW) {
+                        composable(Route.TRACKER_OVERVIEW_SCREEN) {
 
                         }
                         composable(Route.SEARCH) {

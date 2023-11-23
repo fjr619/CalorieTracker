@@ -4,12 +4,11 @@ import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.R
 import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.core.base.domain.use_case.FilterOutDigits
-import com.fjr619.core.ui.UiText
+import com.fjr619.core.base.util.UiText
 import com.fjr619.core.ui.compose_state_events.consumed
 import com.fjr619.core.ui.compose_state_events.triggered
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.base.OnboardingViewModel
-import com.fjr619.onboarding.presentation.screen.height.HeightUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

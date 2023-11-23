@@ -7,3 +7,7 @@ plugins {
 android {
     namespace = "com.fjr619.core.ui"
 }
+
+dependencies {
+    api(projects.core.base)
+}

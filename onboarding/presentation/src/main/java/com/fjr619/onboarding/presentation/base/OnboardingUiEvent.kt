@@ -14,4 +14,8 @@ sealed class OnboardingUiEvent {
     data class SelectWeight(val weight: String): OnboardingUiEvent()
     data class SelectActivityLevel(val level: ActivityLevel): OnboardingUiEvent()
     data class SelectGoalType(val goalType: GoalType): OnboardingUiEvent()
+
+    data class SelectCarbRatio(val ratio: String): OnboardingUiEvent()
+    data class SelectProteinRatio(val ratio: String): OnboardingUiEvent()
+    data class SelectFatRatio(val ratio: String): OnboardingUiEvent()
 }

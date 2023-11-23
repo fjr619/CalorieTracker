@@ -26,7 +26,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             "api"(libs.findLibrary("hilt-compose").get())
             "api"(libs.findLibrary("core-ktx").get())
             "api"(libs.findLibrary("lifecycle-runtime-ktx").get())
-            "api"(project(":core:base"))
+//            "api"(project(":core:base"))
             "api"(project(":core:ui"))
         }
     }
