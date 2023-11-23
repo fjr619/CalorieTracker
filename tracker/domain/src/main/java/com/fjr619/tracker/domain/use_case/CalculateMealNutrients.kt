@@ -1,5 +1,6 @@
 package com.fjr619.tracker.domain.use_case
 
+import android.util.Log
 import com.fjr619.core.base.domain.model.ActivityLevel
 import com.fjr619.core.base.domain.model.Gender
 import com.fjr619.core.base.domain.model.GoalType
@@ -7,24 +8,26 @@ import com.fjr619.core.base.domain.model.UserInfo
 import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.tracker.domain.model.MealType
 import com.fjr619.tracker.domain.model.TrackedFood
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 import kotlin.math.roundToInt
 
-class CalculateMealNutrients(
+class CalculateMealNutrients @Inject constructor(
     private val preferences: IPreferences
 ) {
 
-    fun invoke(trackedFoods: List<TrackedFood>): Result {
-        lateinit var userInfo:UserInfo
-        runBlocking {
-            preferences.loadUserInfo().onEach {
-                userInfo = it
-            }.collect()
-        }
+    private suspend fun getUserInfo(): UserInfo = coroutineScope {
+        preferences.loadUserInfo().first()
+    }
+
+    suspend operator fun invoke(trackedFoods: List<TrackedFood>): Result {
+        val userInfo:UserInfo = getUserInfo()
 
         val allNutrients = trackedFoods
             .groupBy { it.mealType }

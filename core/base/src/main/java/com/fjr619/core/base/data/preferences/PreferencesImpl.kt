@@ -84,4 +84,14 @@ class PreferencesImpl(
             )
         }
     }
+
+    override suspend fun saveShowOnboarding(show: Boolean) {
+        dataStore.edit {
+            it[IPreferences.KEY_SHOULD_SHOW_ONBOARDING] = show
+        }
+    }
+
+    override fun showOnboarding(): Flow<Boolean> = dataStore.data.map {
+        it[IPreferences.KEY_SHOULD_SHOW_ONBOARDING] ?: true
+    }
 }

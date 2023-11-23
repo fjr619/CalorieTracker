@@ -38,6 +38,7 @@ internal fun Project.configureKotlinAndroid(
 //            "implementation"(libs.findLibrary("core-ktx").get())
 //            "implementation"(libs.findLibrary("lifecycle-runtime-ktx").get())
             "coreLibraryDesugaring"(libs.findLibrary("desugaring").get())
+            "implementation"(libs.findLibrary("coroutine").get())
 
             "testImplementation"(libs.findLibrary("junit").get())
             "androidTestImplementation"(libs.findLibrary("androidx-test-ext-junit").get())

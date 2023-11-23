@@ -1,5 +1,6 @@
 package com.fjr619.core.base.domain.preferences
 
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -22,6 +23,9 @@ interface IPreferences {
 
     fun loadUserInfo(): Flow<UserInfo>
 
+    suspend fun saveShowOnboarding(show: Boolean)
+    fun showOnboarding(): Flow<Boolean>
+
     companion object {
         const val USER_PREFERENCES = "user_preferences"
         val KEY_GENDER = stringPreferencesKey("gender")
@@ -33,5 +37,6 @@ interface IPreferences {
         val KEY_CARB_RATIO = floatPreferencesKey("carb_ratio")
         val KEY_PROTEIN_RATIO = floatPreferencesKey("protein_ratio")
         val KEY_FAT_RATIO = floatPreferencesKey("fat_ratio")
+        val KEY_SHOULD_SHOW_ONBOARDING = booleanPreferencesKey("should_show_onboarding")
     }
 }

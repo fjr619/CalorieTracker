@@ -11,6 +11,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -27,6 +28,7 @@ import com.fjr619.onboarding.presentation.screen.goal.Goal
 import com.fjr619.onboarding.presentation.screen.height.Height
 import com.fjr619.onboarding.presentation.screen.nutrient.Nutrient
 import com.fjr619.onboarding.presentation.screen.weight.Weight
+import com.fjr619.tracker.presentation.tracker_overview.OverviewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,10 +39,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
-                val context = LocalContext.current
                 val snackbarHost = remember {
                     SnackbarHostState()
                 }
+
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     snackbarHost = {

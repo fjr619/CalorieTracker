@@ -1,6 +1,9 @@
 package com.fjr619.tracker.presentation.tracker_overview
 
+import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.UiState
+import com.fjr619.core.ui.compose_state_events.StateEventWithContent
+import com.fjr619.core.ui.compose_state_events.consumed
 import com.fjr619.tracker.domain.model.TrackedFood
 import java.time.LocalDate
 
@@ -15,6 +18,7 @@ data class OverviewUiState(
     val caloriesGoal: Int = 0,
     val date: LocalDate = LocalDate.now(),
     val trackedFoods: List<TrackedFood> = emptyList(),
-    val meals: List<Meal> = defaultMeals
+    val meals: List<Meal> = defaultMeals,
+    val navigate: StateEventWithContent<UiEvent.Navigate> = consumed()
 ): UiState {
 }

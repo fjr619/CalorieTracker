@@ -61,6 +61,9 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.onboarding.presentation)
 
+    implementation(projects.tracker.data)
+    implementation(projects.tracker.presentation)
+
 //    implementation(libs.core.ktx)
 //    implementation(libs.lifecycle.runtime.ktx)
 

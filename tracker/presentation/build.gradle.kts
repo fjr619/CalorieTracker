@@ -8,6 +8,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.tracker.domain)
+    api(projects.tracker.domain)
     implementation(libs.coil)
 }
