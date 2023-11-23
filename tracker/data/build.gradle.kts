@@ -11,7 +11,6 @@ android {
 }
 
 dependencies {
-    projects.core.apply {
-        implementation(this.base)
-    }
+    implementation(projects.core.base)
+    implementation(projects.tracker.domain)
 }

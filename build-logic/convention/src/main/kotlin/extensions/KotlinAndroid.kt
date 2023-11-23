@@ -22,6 +22,7 @@ internal fun Project.configureKotlinAndroid(
         }
 
         compileOptions {
+            compileOptions.isCoreLibraryDesugaringEnabled = true
             sourceCompatibility = Config.jvm.javaVersion
             targetCompatibility = Config.jvm.javaVersion
         }
@@ -36,6 +37,8 @@ internal fun Project.configureKotlinAndroid(
         dependencies {
 //            "implementation"(libs.findLibrary("core-ktx").get())
 //            "implementation"(libs.findLibrary("lifecycle-runtime-ktx").get())
+            "coreLibraryDesugaring"(libs.findLibrary("desugaring").get())
+
             "testImplementation"(libs.findLibrary("junit").get())
             "androidTestImplementation"(libs.findLibrary("androidx-test-ext-junit").get())
             "androidTestImplementation"(libs.findLibrary("espresso-core").get())

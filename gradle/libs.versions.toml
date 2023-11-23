@@ -28,6 +28,7 @@ retrofit = "2.9.0"
 okhttp = "4.11.0"
 navigation = "2.7.5"
 datastore = "1.0.0"
+desugaring = "2.0.0"
 #moshi = "1.14"
 
 
@@ -65,6 +66,7 @@ retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", v
 okhttp-log = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}
 
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
+desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugaring"}
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
