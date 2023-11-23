@@ -2,6 +2,7 @@ package com.fjr619.onboarding.data.di
 
 import android.app.Application
 import androidx.room.Room
+import com.fjr619.onboarding.data.local.TrackerDao
 import com.fjr619.onboarding.data.local.TrackerDatabase
 import com.fjr619.onboarding.data.remote.OpenFoodApi
 import dagger.Module
@@ -51,4 +52,8 @@ object TrackerDataModule {
             "tracker_db"
         ).build()
     }
+
+    @Provides
+    @Singleton
+    fun provideTrackerDao(database: TrackerDatabase): TrackerDao = database.dao
 }
