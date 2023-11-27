@@ -29,7 +29,6 @@ class OverviewViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             preferences.saveShowOnboarding(false)
-            Log.e("TAG", "onboarding ${preferences.showOnboarding().first()}")
         }
     }
 
@@ -64,11 +63,13 @@ class OverviewViewModel @Inject constructor(
                 setState {
                     copy(date = uiState.value.date.plusDays(1))
                 }
+                refreshFoods()
             }
             is OverviewEvent.OnPreviousDayClick -> {
                 setState {
                     copy(date = uiState.value.date.minusDays(1))
                 }
+                refreshFoods()
             }
             is OverviewEvent.OnToggleMealClick -> {
                 setState {
