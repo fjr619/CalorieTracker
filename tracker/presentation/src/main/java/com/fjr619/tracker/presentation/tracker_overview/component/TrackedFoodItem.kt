@@ -65,6 +65,7 @@ fun TrackedFoodItem(
                     .error(R.drawable.ic_burger)
                     .fallback(R.drawable.ic_burger)
                     .crossfade(true)
+                    .build()
             ),
             contentDescription = trackedFood.name,
             contentScale = ContentScale.Crop,

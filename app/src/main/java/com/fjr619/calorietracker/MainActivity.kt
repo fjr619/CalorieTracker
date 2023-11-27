@@ -2,14 +2,12 @@ package com.fjr619.calorietracker
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
@@ -46,15 +44,13 @@ import com.fjr619.onboarding.presentation.screen.goal.Goal
 import com.fjr619.onboarding.presentation.screen.height.Height
 import com.fjr619.onboarding.presentation.screen.nutrient.Nutrient
 import com.fjr619.onboarding.presentation.screen.weight.Weight
+import com.fjr619.tracker.domain.model.MealType
 import com.fjr619.tracker.presentation.search.SearchEvent
 import com.fjr619.tracker.presentation.search.SearchScreen
 import com.fjr619.tracker.presentation.search.SearchViewModel
-import com.fjr619.tracker.presentation.search.components.SearchTextField
-import com.fjr619.tracker.presentation.tracker_overview.OverviewEvent
-import com.fjr619.tracker.presentation.tracker_overview.OverviewScreen
-import com.fjr619.tracker.presentation.tracker_overview.OverviewViewModel
 import com.fjr619.tracker.presentation.tracker_overview.TrackerOverview
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -177,16 +173,26 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 SearchScreen(
                                     mealName = mealName,
-                                    dayOfMonth = dayOfMonth,
-                                    month = month,
-                                    year = year,
+                                    state = state,
                                     onTextChange = {
-                                                   viewModel.onEvent(SearchEvent.OnQueryChange(it))
+                                        viewModel.onEvent(SearchEvent.OnQueryChange(it))
                                     },
                                     onSearch = {
-                                               viewModel.onEvent(SearchEvent.OnSearch)
+                                        viewModel.onEvent(SearchEvent.OnSearch)
                                     },
-                                    state = state
+                                    onItemClick = {
+                                        viewModel.onEvent(SearchEvent.OnToggleTrackableFood(it))
+                                    },
+                                    onAmountForFoodChange = { food, amount ->
+                                        viewModel.onEvent(SearchEvent.OnAmountForFoodChange(food, amount))
+                                    },
+                                    onTrack = {
+                                        viewModel.onEvent(SearchEvent.OnTrackFoodClick(
+                                            food = it,
+                                            mealType = MealType.fromString(mealName),
+                                            date = LocalDate.of(year, month, dayOfMonth)
+                                        ))
+                                    }
                                 )
                             }
                         }

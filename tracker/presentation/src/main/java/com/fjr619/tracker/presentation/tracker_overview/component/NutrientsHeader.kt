@@ -72,7 +72,7 @@ fun NutrientsHeader(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 UnitDIsplay(
-                    amount = animatedCalorieCount.value,
+                    amount = state.caloriesGoal,
                     unit = stringResource(id = R.string.kcal),
                     amountColor = MaterialTheme.colorScheme.onPrimary,
                     amountTextSize = 40.sp,
