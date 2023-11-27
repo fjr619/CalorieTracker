@@ -125,10 +125,15 @@ class MainActivity : ComponentActivity() {
                                     viewModel.onEvent(OverviewEvent.OnPreviousDayClick)
                                 },
                                 onNextDayClick = {
-                                    viewModel.onEvent(OverviewEvent.OnPreviousDayClick)
+                                    viewModel.onEvent(OverviewEvent.OnNextDayClick)
                                 },
                                 onToggleClick = {
                                     viewModel.onEvent(OverviewEvent.OnToggleMealClick(it))
+                                },
+                                onDeletedClick = {
+                                    viewModel.onEvent(OverviewEvent.OnDeleteTrackedFoodClick(it))
+                                },
+                                onNavigateToSearch = { mealName, day, month, year ->
                                 }
                             )
                         }
