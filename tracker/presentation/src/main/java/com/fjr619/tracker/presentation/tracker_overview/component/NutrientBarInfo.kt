@@ -4,11 +4,9 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -18,10 +16,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.fjr619.tracker.presentation.components.UnitDIsplay
+import com.fjr619.tracker.presentation.components.NutrientInfo
 
 @Composable
 fun NutrientBarInfo(
@@ -86,26 +83,39 @@ fun NutrientBarInfo(
             }
         }
 
-        Column(
+        NutrientInfo(
             modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            UnitDIsplay(
-                amount = value,
-                unit = stringResource(id = com.fjr619.core.base.R.string.grams),
-                amountColor = if (value <= goal) {
-                    MaterialTheme.colorScheme.onPrimary
-                } else goalExceedsColor,
-                unitColor = if (value <= goal) {
-                    MaterialTheme.colorScheme.onPrimary
-                } else goalExceedsColor
-            )
-            Text(
-                text = name,
-                color = if (value <= goal) MaterialTheme.colorScheme.onPrimary else goalExceedsColor,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Light
-            )
-        }
+            name = name,
+            amount = value,
+            unit = stringResource(id = com.fjr619.core.base.R.string.grams),
+            amountColor = if (value <= goal) {
+                MaterialTheme.colorScheme.onPrimary
+            } else goalExceedsColor,
+            unitColor = if (value <= goal) {
+                MaterialTheme.colorScheme.onPrimary
+            } else goalExceedsColor
+        )
+
+//        Column(
+//            modifier = Modifier.fillMaxWidth(),
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            UnitDIsplay(
+//                amount = value,
+//                unit = stringResource(id = com.fjr619.core.base.R.string.grams),
+//                amountColor = if (value <= goal) {
+//                    MaterialTheme.colorScheme.onPrimary
+//                } else goalExceedsColor,
+//                unitColor = if (value <= goal) {
+//                    MaterialTheme.colorScheme.onPrimary
+//                } else goalExceedsColor
+//            )
+//            Text(
+//                text = name,
+//                color = if (value <= goal) MaterialTheme.colorScheme.onPrimary else goalExceedsColor,
+//                style = MaterialTheme.typography.bodyLarge,
+//                fontWeight = FontWeight.Light
+//            )
+//        }
     }
 }

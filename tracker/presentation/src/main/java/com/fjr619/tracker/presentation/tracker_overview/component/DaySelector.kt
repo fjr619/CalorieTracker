@@ -36,7 +36,7 @@ fun DaySelector(
         }
         Text(
             text = parseDateText(date = date),
-            style = MaterialTheme.typography.headlineLarge
+            style = MaterialTheme.typography.headlineMedium
         )
         IconButton(onClick = onNextDayClick) {
             Icon(

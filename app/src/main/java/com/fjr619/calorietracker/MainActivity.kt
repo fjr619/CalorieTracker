@@ -126,6 +126,9 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onNextDayClick = {
                                     viewModel.onEvent(OverviewEvent.OnPreviousDayClick)
+                                },
+                                onToggleClick = {
+                                    viewModel.onEvent(OverviewEvent.OnToggleMealClick(it))
                                 }
                             )
                         }

@@ -17,16 +17,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fjr619.core.base.R
+import com.fjr619.core.ui.CarbColor
+import com.fjr619.core.ui.FatColor
 import com.fjr619.core.ui.LocalSpacing
+import com.fjr619.core.ui.ProteinColor
 import com.fjr619.tracker.presentation.components.UnitDIsplay
 import com.fjr619.tracker.presentation.tracker_overview.OverviewUiState
-import com.fjr619.core.ui.FatColor
-import com.fjr619.core.ui.ProteinColor
-import com.fjr619.core.ui.CarbColor
 
 @Composable
 fun NutrientsHeader(
@@ -77,9 +78,11 @@ fun NutrientsHeader(
                     amountTextSize = 40.sp,
                     unitColor = MaterialTheme.colorScheme.onPrimary,
                 )
-                Spacer(modifier = Modifier.height(spacing.spaceSmall))
             }
         }
+
+        Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
 
         NutrientsBar(
             carbs = state.totalCarbs,
@@ -91,32 +94,32 @@ fun NutrientsHeader(
                 .fillMaxWidth()
                 .height(30.dp)
         )
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    NutrientBarInfo(
-                        value = state.totalCarbs,
-                        goal = state.carbsGoal,
-                        name = stringResource(id = R.string.carbs),
-                        color = CarbColor,
-                        modifier = Modifier.size(90.dp)
-                    )
-                    NutrientBarInfo(
-                        value = state.totalProtein,
-                        goal = state.proteinGoal,
-                        name = stringResource(id = R.string.protein),
-                        color = ProteinColor,
-                        modifier = Modifier.size(90.dp)
-                    )
-                    NutrientBarInfo(
-                        value = state.totalFat,
-                        goal = state.fatGoal,
-                        name = stringResource(id = R.string.fat),
-                        color = FatColor,
-                        modifier = Modifier.size(90.dp)
-                    )
-                }
+        Spacer(modifier = Modifier.height(spacing.spaceLarge))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            NutrientBarInfo(
+                value = state.totalCarbs,
+                goal = state.carbsGoal,
+                name = stringResource(id = R.string.carbs),
+                color = CarbColor,
+                modifier = Modifier.size(90.dp)
+            )
+            NutrientBarInfo(
+                value = state.totalProtein,
+                goal = state.proteinGoal,
+                name = stringResource(id = R.string.protein),
+                color = ProteinColor,
+                modifier = Modifier.size(90.dp)
+            )
+            NutrientBarInfo(
+                value = state.totalFat,
+                goal = state.fatGoal,
+                name = stringResource(id = R.string.fat),
+                color = FatColor,
+                modifier = Modifier.size(90.dp)
+            )
+        }
     }
 }
