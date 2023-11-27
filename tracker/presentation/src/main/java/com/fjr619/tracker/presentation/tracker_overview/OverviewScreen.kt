@@ -89,7 +89,6 @@ fun OverviewScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .padding(bottom = spacing.spaceMedium)
     ) {
         item(
@@ -112,7 +111,9 @@ fun OverviewScreen(
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
         }
 
-        items(state.meals) { meal ->
+        items(state.meals, key = {
+            it.mealType.name
+        }) { meal ->
             ExpandableMeal(
                 meal = meal,
                 onToggleClick = {
@@ -124,7 +125,11 @@ fun OverviewScreen(
                             .fillMaxWidth()
                             .padding(horizontal = spacing.spaceSmall)
                     ) {
-                        state.trackedFoods.forEach { food ->
+                        val foods = state.trackedFoods.filter {
+                            it.mealType == meal.mealType
+                        }
+
+                        foods.forEach { food ->
                             TrackedFoodItem(
                                 trackedFood = food,
                                 onDeleteClick = { onDeletedClick(food) })

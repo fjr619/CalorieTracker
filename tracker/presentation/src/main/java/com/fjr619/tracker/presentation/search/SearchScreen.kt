@@ -52,9 +52,7 @@ fun SearchScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {
-            items(state.trackableFood, key = {
-                it.food.name
-            }) { food ->
+            items(state.trackableFood) { food ->
                 TrackableFoodItem(
                     modifier = Modifier.fillMaxWidth(),
                     trackableFoodUiState = food,

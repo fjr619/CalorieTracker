@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -25,7 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.fjr619.core.base.R
 import com.fjr619.core.ui.LocalSpacing
 import com.fjr619.tracker.presentation.components.NutrientInfo
@@ -52,10 +56,9 @@ fun ExpandableMeal(
                 .padding(spacing.spaceMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = painterResource(id = meal.drawableRes),
-                contentDescription = meal.name.asString(context = context)
-            )
+            AsyncImage(
+                modifier = Modifier.size(100.dp),
+                model = meal.drawableRes, contentDescription = meal.name.asString(context))
             Spacer(modifier = Modifier.width(spacing.spaceMedium))
             Column(
                 modifier = Modifier.weight(1f)

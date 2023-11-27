@@ -1,5 +1,6 @@
 package com.fjr619.tracker.presentation.tracker_overview
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.core.base.navigation.Route
@@ -10,6 +11,7 @@ import com.fjr619.core.ui.viewmodel.CoreViewModel
 import com.fjr619.tracker.domain.use_case.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -25,6 +27,7 @@ class OverviewViewModel @Inject constructor(
     override fun createInitialState(): OverviewUiState = OverviewUiState()
 
     init {
+        refreshFoods()
         viewModelScope.launch {
             preferences.saveShowOnboarding(false)
         }
@@ -82,9 +85,11 @@ class OverviewViewModel @Inject constructor(
     }
 
     private fun refreshFoods() {
+
         getFoodsForDateJob?.cancel()
-        getFoodsForDateJob = trackerUseCases.getFoodsForDate(uiState.value.date)
-            .onEach {
+
+        getFoodsForDateJob = viewModelScope.launch {
+            trackerUseCases.getFoodsForDate(uiState.value.date).collect {
                 val nutrientsResult = trackerUseCases.calculateMealNutrients(it)
                 setState {
                     copy(
@@ -105,16 +110,19 @@ class OverviewViewModel @Inject constructor(
                                     fat = 0,
                                     calories = 0
                                 )
+                            Log.e("TAG", "meal $nutrientsForMeal")
+
                             it.copy(
                                 carbs = nutrientsForMeal.carbs,
                                 protein = nutrientsForMeal.protein,
                                 fat = nutrientsForMeal.fat,
-                                calories = nutrientsResult.caloriesGoal
+                                calories = nutrientsForMeal.calories
                             )
                         }
 
                     )
                 }
-            }.launchIn(viewModelScope)
+            }
+        }
     }
 }
