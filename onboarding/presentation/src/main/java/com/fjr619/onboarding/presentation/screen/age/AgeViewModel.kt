@@ -38,7 +38,7 @@ class AgeViewModel @Inject constructor(
 
                     preferences.saveAge(ageNumber)
                     setState {
-                        copy(navigate = triggered(event.uiEvent))
+                        copy(navigate = triggered(event.route))
                     }
                 }
             }

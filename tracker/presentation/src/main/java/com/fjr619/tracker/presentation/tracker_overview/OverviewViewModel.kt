@@ -4,16 +4,12 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.domain.preferences.IPreferences
 import com.fjr619.core.base.navigation.Route
-import com.fjr619.core.ui.UiEvent
 import com.fjr619.core.ui.compose_state_events.consumed
 import com.fjr619.core.ui.compose_state_events.triggered
 import com.fjr619.core.ui.viewmodel.CoreViewModel
 import com.fjr619.tracker.domain.use_case.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -44,13 +40,7 @@ class OverviewViewModel @Inject constructor(
             is OverviewEvent.OnAddFoodClick -> {
                 viewModelScope.launch {
                     setState {
-                        copy(navigate = triggered(UiEvent.Navigate(
-                            route = Route.SEARCH_SCREEN
-                            + "/${event.meal.mealType.name}"
-                            + "/${uiState.value.date.dayOfMonth}"
-                            + "/${uiState.value.date.monthValue}"
-                            + "/${uiState.value.date.year}"
-                        )))
+                        copy(navigate = triggered(Pair(Route.SEARCH_SCREEN, event.meal)))
                     }
                 }
             }

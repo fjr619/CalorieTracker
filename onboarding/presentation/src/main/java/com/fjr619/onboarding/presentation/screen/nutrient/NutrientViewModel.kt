@@ -65,7 +65,7 @@ class NutrientViewModel @Inject constructor(
                             preferences.saveCarbRatio(result.carbsRatio)
                             preferences.saveFatRatio(result.fatRatio)
                             setState {
-                                copy(navigate = triggered(event.uiEvent))
+                                copy(navigate = triggered(event.route))
                             }
                         }
                     }

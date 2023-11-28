@@ -28,7 +28,7 @@ class GoalViewModel @Inject constructor(
         when(event) {
             is OnboardingUiEvent.NextPage -> {
                 setState {
-                    copy(navigate = triggered(event.uiEvent))
+                    copy(navigate = triggered(event.route))
                 }
             }
             is OnboardingUiEvent.SelectGoalType -> {

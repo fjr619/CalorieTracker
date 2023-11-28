@@ -12,56 +12,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import com.fjr619.core.base.R
 import com.fjr619.core.base.domain.model.GoalType
-import com.fjr619.core.base.navigation.Route
 import com.fjr619.core.ui.LocalSpacing
-import com.fjr619.core.ui.UiEvent
-import com.fjr619.core.ui.compose_state_events.EventEffect
-import com.fjr619.core.ui.navigate
-import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.component.ActionButton
 import com.fjr619.onboarding.presentation.component.SelectableButton
-import com.fjr619.onboarding.presentation.screen.activity_level.ActivityLevelScreen
-import com.fjr619.onboarding.presentation.screen.activity_level.ActivityLevelViewModel
-
-fun NavGraphBuilder.Goal(navController: NavController) {
-    composable(Route.GOAL_SCREEN) {
-        val viewModel: GoalViewModel = hiltViewModel()
-        val state by viewModel.uiState.collectAsStateWithLifecycle()
-
-        EventEffect(
-            event = state.navigate,
-            onConsumed = viewModel::onConsumedNavigate,
-            action = navController::navigate
-        )
-
-        GoalScreen(
-            goalType = state.goal,
-            onNextClick = {
-                viewModel.onEvent(
-                    OnboardingUiEvent.NextPage(
-                        UiEvent.Navigate(
-                            Route.NUTRIENT_GOAL_SCREEN
-                        )
-                    )
-                )
-            },
-            onSelectedType = { type ->
-                viewModel.onEvent(OnboardingUiEvent.SelectGoalType(type))
-            }
-        )
-    }
-}
 
 @Composable
 fun GoalScreen(

@@ -40,7 +40,7 @@ class WeightViewModel @Inject constructor(
 
                     preferences.saveWeight(weightNumber)
                     setState {
-                        copy(navigate = triggered(event.uiEvent))
+                        copy(navigate = triggered(event.route))
                     }
                 }
             }

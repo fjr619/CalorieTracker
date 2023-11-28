@@ -40,7 +40,7 @@ class HeightViewModel @Inject constructor(
 
                     preferences.saveHeight(heightNumber)
                     setState {
-                        copy(navigate = triggered(event.uiEvent))
+                        copy(navigate = triggered(event.route))
                     }
                 }
             }
