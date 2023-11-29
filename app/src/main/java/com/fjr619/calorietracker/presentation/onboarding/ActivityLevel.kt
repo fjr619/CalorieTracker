@@ -8,12 +8,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.activity_level.ActivityLevelScreen
 import com.fjr619.onboarding.presentation.screen.activity_level.ActivityLevelViewModel
 
 fun NavGraphBuilder.ActivityLevel(navController: NavController) {
-    composable(Route.ACTIVITY_SCREEN) {
+    composable(NavRoutes.ACTIVITY_SCREEN.path) {
         val viewModel: ActivityLevelViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -28,7 +29,7 @@ fun NavGraphBuilder.ActivityLevel(navController: NavController) {
             onNextClick = {
                 viewModel.onEvent(
                     OnboardingUiEvent.NextPage(
-                        Route.GOAL_SCREEN
+                        NavRoutes.GOAL_SCREEN.path
                     )
                 )
             },

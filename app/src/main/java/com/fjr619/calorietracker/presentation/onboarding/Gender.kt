@@ -8,12 +8,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.gender.GenderScreen
 import com.fjr619.onboarding.presentation.screen.gender.GenderViewModel
 
 fun NavGraphBuilder.Gender(navController: NavController) {
-    composable(Route.GENDER_SCREEN) {
+    composable(NavRoutes.GENDER_SCREEN.path) {
         val viewModel: GenderViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -27,7 +28,7 @@ fun NavGraphBuilder.Gender(navController: NavController) {
             selectedGender = state.gender,
             onNextClick = {
                 viewModel.onEvent(
-                    OnboardingUiEvent.NextPage(Route.AGE_SCREEN)
+                    OnboardingUiEvent.NextPage(NavRoutes.AGE_SCREEN.path)
                 )
             },
             onSelectedGender = { gender ->

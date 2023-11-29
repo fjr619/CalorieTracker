@@ -33,6 +33,7 @@ import com.fjr619.calorietracker.presentation.onboarding.Weight
 import com.fjr619.calorietracker.presentation.tracker.Search
 import com.fjr619.calorietracker.presentation.tracker.TrackerOverview
 import com.fjr619.calorietracker.ui.theme.CalorieTrackerTheme
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.snackbar.CustomSnackbar
 import com.fjr619.onboarding.presentation.screen.WelcomeScreen
@@ -91,12 +92,12 @@ class MainActivity : ComponentActivity() {
 
                     ) {
                         navigation(
-                            route = Route.ONBOARDING_ROUTE,
-                            startDestination = Route.WELCOME_SCREEN
+                            route = NavRoutes.ONBOARDING_ROUTE.path,
+                            startDestination = NavRoutes.WELCOME_SCREEN.path
                         ) {
-                            composable(Route.WELCOME_SCREEN) {
+                            composable(NavRoutes.WELCOME_SCREEN.path) {
                                 WelcomeScreen(onNextClick = {
-                                    navController.navigate(Route.GENDER_SCREEN)
+                                    navController.navigate(NavRoutes.GENDER_SCREEN.path)
                                 })
                             }
 

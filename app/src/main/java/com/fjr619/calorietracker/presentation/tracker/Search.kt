@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.core.ui.showSnackbar
 import com.fjr619.tracker.domain.model.MealType
 import com.fjr619.tracker.presentation.search.SearchEvent
@@ -26,27 +27,27 @@ import java.time.LocalDate
 
 fun NavGraphBuilder.Search(snackbarHost: SnackbarHostState, navController: NavController) {
     composable(
-        Route.SEARCH_SCREEN + "/{mealName}/{dayOfMonth}/{month}/{year}",
+        NavRoutes.SEARCH_SCREEN.path,
         arguments = listOf(
-            navArgument("mealName") {
+            navArgument(NavRoutes.MEAL_NAME) {
                 type = NavType.StringType
             },
-            navArgument("dayOfMonth") {
+            navArgument(NavRoutes.DAY_OF_MONTH) {
                 type = NavType.IntType
             },
-            navArgument("month") {
+            navArgument(NavRoutes.MONTH_VALUE) {
                 type = NavType.IntType
             },
-            navArgument("year") {
+            navArgument(NavRoutes.YEAR) {
                 type = NavType.IntType
             },
         )
     ) {
 
-        val mealName = it.arguments?.getString("mealName")!!
-        val dayOfMonth = it.arguments?.getInt("dayOfMonth")!!
-        val month = it.arguments?.getInt("month")!!
-        val year = it.arguments?.getInt("year")!!
+        val mealName = it.arguments?.getString(NavRoutes.MEAL_NAME)!!
+        val dayOfMonth = it.arguments?.getInt(NavRoutes.DAY_OF_MONTH)!!
+        val month = it.arguments?.getInt(NavRoutes.MONTH_VALUE)!!
+        val year = it.arguments?.getInt(NavRoutes.YEAR)!!
 
         val viewModel: SearchViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -61,9 +62,7 @@ fun NavGraphBuilder.Search(snackbarHost: SnackbarHostState, navController: NavCo
         EventEffect(
             event = state.navigateUp,
             onConsumed = viewModel::onConsumedNavigateUp,
-            action = {
-                navController.navigateUp()
-            }
+            action = navController::navigateUp
         )
 
         Surface(

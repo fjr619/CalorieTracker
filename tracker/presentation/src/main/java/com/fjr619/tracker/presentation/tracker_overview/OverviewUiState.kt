@@ -18,6 +18,6 @@ data class OverviewUiState(
     val date: LocalDate = LocalDate.now(),
     val trackedFoods: List<TrackedFood> = emptyList(),
     val meals: List<Meal> = defaultMeals,
-    val navigate: StateEventWithContent<Pair<String, Meal>> = consumed()
+    val navigate: StateEventWithContent<String> = consumed()
 ): UiState {
 }

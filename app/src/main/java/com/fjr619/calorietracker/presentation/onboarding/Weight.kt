@@ -9,13 +9,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.core.ui.showSnackbar
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.weight.WeightScreen
 import com.fjr619.onboarding.presentation.screen.weight.WeightViewModel
 
 fun NavGraphBuilder.Weight(snackbarHost: SnackbarHostState, navController: NavController) {
-    composable(Route.WEIGHT_SCREEN) {
+    composable(NavRoutes.WEIGHT_SCREEN.path) {
         val viewModel: WeightViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -35,7 +36,7 @@ fun NavGraphBuilder.Weight(snackbarHost: SnackbarHostState, navController: NavCo
             weight = state.weight,
             onNextClick = {
                 viewModel.onEvent(
-                    OnboardingUiEvent.NextPage(Route.ACTIVITY_SCREEN)
+                    OnboardingUiEvent.NextPage(NavRoutes.ACTIVITY_SCREEN.path)
                 )
             },
             onSelectedHeight = {

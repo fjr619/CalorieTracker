@@ -37,10 +37,10 @@ class OverviewViewModel @Inject constructor(
 
     fun onEvent(event: OverviewEvent) {
         when (event) {
-            is OverviewEvent.OnAddFoodClick -> {
+            is OverviewEvent.GoToSearch -> {
                 viewModelScope.launch {
                     setState {
-                        copy(navigate = triggered(Pair(Route.SEARCH_SCREEN, event.meal)))
+                        copy(navigate = triggered(event.route))
                     }
                 }
             }

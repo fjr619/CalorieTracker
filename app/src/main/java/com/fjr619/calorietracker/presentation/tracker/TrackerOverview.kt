@@ -12,29 +12,21 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.tracker.presentation.tracker_overview.OverviewEvent
 import com.fjr619.tracker.presentation.tracker_overview.OverviewScreen
 import com.fjr619.tracker.presentation.tracker_overview.OverviewViewModel
 
 fun NavGraphBuilder.TrackerOverview(navController: NavController) {
-    composable(Route.TRACKER_OVERVIEW_SCREEN) {
+    composable(NavRoutes.TRACKER_OVERVIEW_SCREEN.path) {
         val viewModel: OverviewViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
         EventEffect(
             event = state.navigate,
             onConsumed = viewModel::onConsumedNavigate,
-            action = {
-                navController.navigate(
-                    it.first
-                            + "/${it.second.mealType.name}"
-                            + "/${state.date.dayOfMonth}"
-                            + "/${state.date.monthValue}"
-                            + "/${state.date.year}"
-                )
-            }
+            action = navController::navigate
         )
 
         Surface(
@@ -58,8 +50,15 @@ fun NavGraphBuilder.TrackerOverview(navController: NavController) {
                 onDeletedClick = {
                     viewModel.onEvent(OverviewEvent.OnDeleteTrackedFoodClick(it))
                 },
-                onAddFoodcClick = {
-                    viewModel.onEvent(OverviewEvent.OnAddFoodClick(it))
+                onAddFoodcClick = { meal ->
+                    viewModel.onEvent(OverviewEvent.GoToSearch(
+                        NavRoutes.SEARCH_SCREEN.build(
+                            mealType = meal.mealType.name,
+                            dayOfMonth = state.date.dayOfMonth,
+                            monthValue = state.date.monthValue,
+                            year = state.date.year
+                        )
+                    ))
                 }
             )
         }

@@ -9,13 +9,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.core.ui.showSnackbar
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.nutrient.NutrientScreen
 import com.fjr619.onboarding.presentation.screen.nutrient.NutrientViewModel
 
 fun NavGraphBuilder.Nutrient(snackbarHost: SnackbarHostState, navController: NavController) {
-    composable(Route.NUTRIENT_GOAL_SCREEN) {
+    composable(NavRoutes.NUTRIENT_GOAL_SCREEN.path) {
         val viewModel: NutrientViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -38,7 +39,7 @@ fun NavGraphBuilder.Nutrient(snackbarHost: SnackbarHostState, navController: Nav
             fatRatio = state.fatRatio,
             onNextClick = {
                 viewModel.onEvent(
-                    OnboardingUiEvent.NextPage(Route.TRACKER_OVERVIEW_SCREEN)
+                    OnboardingUiEvent.NextPage(NavRoutes.TRACKER_OVERVIEW_SCREEN.path)
                 )
             },
             onSelectCarb = { viewModel.onEvent(OnboardingUiEvent.SelectCarbRatio(it)) },

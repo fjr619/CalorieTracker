@@ -9,13 +9,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
+import com.fjr619.core.ui.navigation.NavRoutes
 import com.fjr619.core.ui.showSnackbar
 import com.fjr619.onboarding.presentation.base.OnboardingUiEvent
 import com.fjr619.onboarding.presentation.screen.age.AgeScreen
 import com.fjr619.onboarding.presentation.screen.age.AgeViewModel
 
 fun NavGraphBuilder.Age(snackbarHost: SnackbarHostState, navController: NavController) {
-    composable(Route.AGE_SCREEN) {
+    composable(NavRoutes.AGE_SCREEN.path) {
         val viewModel: AgeViewModel = hiltViewModel()
         val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -36,7 +37,7 @@ fun NavGraphBuilder.Age(snackbarHost: SnackbarHostState, navController: NavContr
             age = state.age,
             onNextClick = {
                 viewModel.onEvent(
-                    OnboardingUiEvent.NextPage(Route.HEIGHT_SCREEN)
+                    OnboardingUiEvent.NextPage(NavRoutes.HEIGHT_SCREEN.path)
                 )
             },
             onSelectedAge = {
