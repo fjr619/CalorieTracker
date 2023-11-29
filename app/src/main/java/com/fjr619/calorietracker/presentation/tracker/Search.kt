@@ -15,7 +15,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
 import com.fjr619.core.ui.showSnackbar
 import com.fjr619.tracker.domain.model.MealType

@@ -12,7 +12,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.EventEffect
 import com.fjr619.tracker.presentation.tracker_overview.OverviewEvent
 import com.fjr619.tracker.presentation.tracker_overview.OverviewScreen

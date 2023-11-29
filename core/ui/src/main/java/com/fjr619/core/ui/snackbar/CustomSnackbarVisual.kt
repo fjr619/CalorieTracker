@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.fjr619.core.ui.LocalSpacing
 
 class CustomSnackbarVisual(
     override val message: String,
@@ -26,9 +27,10 @@ class CustomSnackbarVisual(
 fun CustomSnackbar(
     data: SnackbarData
 ) {
+    val spacing = LocalSpacing.current
     val isError = (data.visuals as? CustomSnackbarVisual)?.isError ?: false
     Snackbar(
-        modifier = Modifier.padding(16.dp).clip(RoundedCornerShape(20.dp)),
+        modifier = Modifier.padding(spacing.spaceMedium).clip(RoundedCornerShape(spacing.spaceMedium)),
         containerColor = if (isError)
             MaterialTheme.colorScheme.error
         else

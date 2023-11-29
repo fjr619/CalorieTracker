@@ -33,7 +33,7 @@ import com.fjr619.calorietracker.presentation.onboarding.Weight
 import com.fjr619.calorietracker.presentation.tracker.Search
 import com.fjr619.calorietracker.presentation.tracker.TrackerOverview
 import com.fjr619.calorietracker.ui.theme.CalorieTrackerTheme
-import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.snackbar.CustomSnackbar
 import com.fjr619.onboarding.presentation.screen.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint

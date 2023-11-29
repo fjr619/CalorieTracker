@@ -3,7 +3,7 @@ package com.fjr619.tracker.presentation.tracker_overview
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.fjr619.core.base.domain.preferences.IPreferences
-import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.compose_state_events.consumed
 import com.fjr619.core.ui.compose_state_events.triggered
 import com.fjr619.core.ui.viewmodel.CoreViewModel

@@ -1,4 +1,4 @@
-package com.fjr619.core.base.navigation
+package com.fjr619.core.ui.navigation
 
 object Route {
     const val ONBOARDING_ROUTE = "onboardingRoute"

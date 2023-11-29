@@ -16,7 +16,7 @@ import javax.inject.Inject
 class TrackerRepositoryImpl @Inject constructor(
     private val dao: TrackerDao,
     private val api: OpenFoodApi
-): TrackerRepository {
+) : TrackerRepository {
 
     override suspend fun searchFood(
         query: String,
@@ -30,9 +30,22 @@ class TrackerRepositoryImpl @Inject constructor(
                 pageSize = pageSize
             )
             Result.success(
-                searchDto.products.mapNotNull { it.toTrackableFood() }
+                searchDto.products
+//                    .filter {
+//                        //fixing for calorie from api maybe not correct
+//                        val calculateCalories =
+//                            it.nutriments.carbohydrates100g * 4f +
+//                                    it.nutriments.proteins100g * 4f +
+//                                    it.nutriments.fat100g * 9f
+//
+//                        val lowerBound = calculateCalories * 0.99f
+//                        val upperBound = calculateCalories * 1.01f
+//                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+//
+//                    }
+                    .mapNotNull { it.toTrackableFood() }
             )
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             Result.failure(e)
         }

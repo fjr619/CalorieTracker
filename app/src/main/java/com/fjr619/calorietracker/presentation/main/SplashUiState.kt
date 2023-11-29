@@ -1,6 +1,6 @@
 package com.fjr619.calorietracker.presentation.main
 
-import com.fjr619.core.base.navigation.Route
+import com.fjr619.core.ui.navigation.Route
 import com.fjr619.core.ui.UiState
 
 data class SplashUiState(
